@@ -1,0 +1,43 @@
+
+  <main>
+    <!-- Start Add Photo Section -->
+    <div class="editPage">
+      <h2>Edit photo</h2>
+      <!-- Start Add Photo Form -->
+      <form method="post">
+        <p>
+          <input type="text" name="name" placeholder="Name" value="{{currentPhoto.name}}" />
+        </p>
+
+        <p>
+          <input type="number" name="age" placeholder="Age" value="{{currentPhoto.age}}" />
+        </p>
+
+        <p>
+          <textarea type="text" name="description" placeholder="Description">{{currentPhoto.description}}</textarea
+          >
+        </p>
+
+        <p>
+          <input
+            type="text"
+            name="location"
+            placeholder="Location"
+            value="{{currentPhoto.location}}"
+          />
+        </p>
+
+        <p>
+          <input
+            type="text"
+            name="image"
+            placeholder="Link to image"
+            value="{{currentPhoto.image}}"
+          />
+        </p>
+        <!-- Add Photo Button -->
+        <button class="edit-btn" type="submit">Edit Photo</button>
+      </form>
+    </div>
+  </main>
+</html>

@@ -1,0 +1,120 @@
+
+
+    <!-- Starts Main Section -->
+    <main>
+        <div class="container">
+            <div class="col-9">
+
+                <!-- Start Pet Photo Post Section -->
+                <div class="card">
+                    <div class="top">
+
+                        <!-- Start User Details and Image Location Section -->
+                        <div class="userDetails">
+
+                            <!-- Link to User Profile Details Page-->
+                            <div>
+                                <div class="profilepic">
+                                    <div class="profile_img">
+                                        <div class="image">
+                                            <img src="/static/images/person.png" alt="img8">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>
+
+                                <!-- Link to User Profile Details Page -->
+                                <p>
+                                    <!-- User's username -->
+                                    {{currentPhoto.owner.username}}
+                                </p>
+                                <!-- photo's location -->
+                                <span>{{currentPhoto.location}}</span>
+
+                                <!-- IF the viewer is the creator of the photo -->
+                                <div class="edit-delete-btns">
+                                    {{#if isPhotoOwner}}
+                                    <!-- Edit Pet Photo -->
+                                    <a href="/photos/edit/{{currentPhoto._id}}">
+                                        <img class="edit-img" src="/static/images/edit-pen-icon-6.jpg"
+                                            alt="edit button">
+                                    </a>
+
+                                    <!--Delete Pet Photo -->
+                                    <a href="/photos/delete/{{currentPhoto._id}}">
+                                        <img class="bin-img" src="/static/images/icon-remove-22.jpg" alt="bin button">
+                                    </a>
+                                    {{/if}}
+                                </div>
+
+                            </h3>
+                        </div>
+
+                    </div>
+
+                    <!-- Start Pet Photo -->
+                    <div class="imgBx">
+                        <!-- Pet Photo -->
+                        <img src="{{currentPhoto.image}}" alt="post" class="cover">
+                    </div>
+
+
+
+                    <div class="bottom">
+
+                        <p class="message">
+                            <b class="petDescription">{{currentPhoto.description}}</b>
+                        </p>
+
+
+                        <!-- Photo description -->
+                        <div class="pet-details">
+                            <p class="petName">Name: {{currentPhoto.name}}</p>
+                            <p class="petAge">Age: {{currentPhoto.age}}</p>
+                        </div>
+                        <div class="comments">
+                            <div class="comments-top">
+                                {{#each photoCommentsArray}}
+                                    <div class="userDetails">
+                                    <div class="comment-data">
+                                        <div class="profilepic">
+                                            <div class="profile_img">
+                                                <div class="image">
+                                                    <!-- User Profile Image -->
+                                                    <img src="/static/images/person.png" alt="img8">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--User's username-->
+                                        <p><b>{{this.username}}</b>- {{this.comment}}</p>
+                                    </div>
+                                    </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                    {{#if isAuthenticated}}
+                    {{#unless isPhotoOwner}}
+                    <div class="addComments">
+                        <!-- Start Add Comments Form -->
+                        <form method="post">
+                            <textarea id="comment-textarea" name="comment" cols="40" rows="10"
+                                placeholder="Add comment..."></textarea>
+                            <!-- Post Comments Button -->
+                            <button type="submit">Post</button>
+                        </form>
+                    </div>
+                    {{/unless}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+</body>
+
+</html>
