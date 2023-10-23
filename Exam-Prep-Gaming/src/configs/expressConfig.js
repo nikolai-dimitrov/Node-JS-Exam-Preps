@@ -3,6 +3,7 @@ const path = require("path");
 const router = require("../router");
 const cookieParser = require("cookie-parser");
 const { authentication } = require("../middlewares/authMiddleware");
+const { globalErrorHandler } = require("../utils/errorUtil");
 
 const setupExpress = (app) => {
   const staticFiles = express.static(path.resolve(__dirname, "../public"));
@@ -11,5 +12,6 @@ const setupExpress = (app) => {
   app.use(cookieParser());
   app.use(authentication);
   app.use(router);
+  app.use(globalErrorHandler);
 };
 module.exports = setupExpress;

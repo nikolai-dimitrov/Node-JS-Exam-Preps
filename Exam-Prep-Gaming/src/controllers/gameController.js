@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const gameService = require("../services/gameService");
 const { isAuth } = require("../middlewares/authMiddleware");
-const { extractErrorMessages } = require("../utils/errorUtil");
+const { extractErrorMessages, CustomError } = require("../utils/errorUtil");
 const { generatePlatformOptions } = require("../utils/viewUtil");
 
 //Catalog page.
@@ -15,7 +15,10 @@ router.get("/details/:gameId", async (req, res) => {
   const gameId = req.params.gameId;
   const userId = req.user?._id;
   const currentGame = await gameService.getOne(gameId).lean();
-
+  if (!currentGame) {
+    res.redirect("/404");
+    return;
+  }
   const isOwner = await gameService.isGameOwner(gameId, userId);
   const wasBought = await gameService.isAlreadyBought(gameId, userId);
   res.render("games/details", { currentGame, isOwner, wasBought });

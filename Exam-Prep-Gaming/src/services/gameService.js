@@ -17,7 +17,7 @@ exports.isAlreadyBought = async (gameId, userId) => {
 
 exports.isGameOwner = async (gameId, userId) => {
   const game = await this.getOne(gameId);
-  return game.owner._id == userId ? true : false;
+  return game?.owner._id == userId ? true : false;
 };
 
 exports.getQueriedGames = (queryParams) => {
